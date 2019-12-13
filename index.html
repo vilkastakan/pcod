@@ -22,6 +22,21 @@
         text-align: center;
         outline: none;
     }
+  
+  a {
+    color: white;
+  }
+  a:visited {
+    color: white;
+  }
+  
+  .about {
+    padding-top: 30vh;
+  }
+  
+  
+
+
    
     
 </style>
@@ -32,11 +47,13 @@
     <div>
       <input type="date" min="2000-01-01" max="2019-12-31" id="date-input" />
       <br>
-      <p id="hex" style="font-size: 20px; -webkit-user-select: all;-moz-user-select: all;-ms-user-select: all;user-select: all;">
-        
+      <p id="hex" style="font-size: 20px; -webkit-user-select: all;-moz-user-select: all;-ms-user-select: all;user-select: all;">choose date plz</p>
+      <p class="about" style="font-size: 20px;">
+         not sponsored by Pantone<br> <a href="https://www.instagram.com/p/B6AAF7VA9no/">about</a>
       </p>
     </div>
 </div>
+
   
   <script>
     Date.prototype.dayOfYear= function(){
@@ -59,6 +76,7 @@
     function interpolate(color1, color2, progress) {
       return float2int(color2 * progress + color1 * (1-progress));
     }
+    
     
     document.getElementById("date-input").valueAsDate = new Date();
 
