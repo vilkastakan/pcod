@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Color of the Day</title>
+
+<link href="//fonts.googleapis.com/css?family=Anonymous+Pro&amp;subset=cyrillic" rel="stylesheet">
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><style>
+    body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        font: 50px "Anonymous Pro";
+        text-align: center;
+    }
+    #question-box {
+        margin-top: 100px;
+    }
+    input {
+        background-color: black;
+        color: white;
+        font: 50px "Anonymous Pro";
+        border: none;
+        text-align: center;
+        outline: none;
+    }
+   
+    
+</style>
+
+
+</head><body><div id="question-box">
+
+    <div>
+      <input type="date" min="2000-01-01" max="2019-12-31" id="date-input" />
+    </div>
+</div>
+  
+  <script>
+    Date.prototype.dayOfYear= function(){
+        var j1= new Date(this);
+        j1.setMonth(0, 0);
+        return Math.round((this-j1)/8.64e7);
+    };
+    function componentToHex(c) {
+        var hex = c.toString(16);
+        return hex.length == 1 ? "0" + hex : hex;
+    };
+
+    function rgbToHex(r, g, b) {
+        return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    };
+    function float2int (value) {
+        return value | 0;
+    };
+    
+    function interpolate(color1, color2, progress) {
+      return float2int(color2 * progress + color1 * (1-progress));
+    }
+    
+    document.getElementById("date-input").valueAsDate = new Date();
+
+    
+
+    function update() {
+        var chosen = document.getElementById("date-input").valueAsDate;
+        var colors = [[0x9B, 0xB7, 0xD4], [0xC7, 0x43, 0x75], [0xBF, 0x19, 0x32], [0x7B, 0xC4, 0xC4], [0xE2, 0x58, 0x3E], [0x53, 0xB0, 0xAE], [0xDE, 0xCD, 0xBE], [0x9B, 0x1B, 0x30], [0x5A, 0x5B, 0x9F], [0xF0, 0xC0, 0x5A], [0x45, 0xB5, 0xAA], [0xD9, 0x4F, 0x70], [0xDD, 0x41, 0x24], [0x00, 0x94, 0x73], [0xB1, 0x63, 0xA3], [0x95, 0x52, 0x51], [0xF7, 0xCA, 0xC9], [0x92, 0xA8, 0xD1], [0x88, 0xB0, 0x4B], [0x5F, 0x4B, 0x8B], [0xFF, 0x6F, 0x61], [0x0F, 0x4C, 0x81]];
+        var this_year = colors[chosen.getFullYear()-1999];
+        var next_year = colors[chosen.getFullYear()-1999+1];
+        var day = chosen.dayOfYear()/366;
+        var red, green, blue;
+        red = interpolate(this_year[0], next_year[0], day);
+        green = interpolate(this_year[1], next_year[1], day);
+        blue = interpolate(this_year[2], next_year[2], day);
+        document.body.style.backgroundColor = rgbToHex(red, green, blue);
+        document.getElementById("date-input").style.backgroundColor = rgbToHex(red, green, blue); 
+
+    };
+    
+    setInterval(update, 500);
+  
+  
+  </script>
+</body></html>
