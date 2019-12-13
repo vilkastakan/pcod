@@ -3,6 +3,5 @@
 
 There is 20 colors of the Year by Pantone. Too few, huh. What about Color of the Day, Pantone?
 
-See live: [pcod.glitch.me](https://pcod.glitch.me)!
 
-[RGBs from Wikipedia](https://en.wikipedia.org/wiki/Pantone).
+[RGBs from Wikipedia](https://en.wikipedia.org/wiki/Pantone), but without Rose Quartz in 2016 (there was 2 colors, wtf is this legal).
